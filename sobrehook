@@ -1,0 +1,29 @@
+useState:
+Guarda um valor dentro do componente. Quando esse valor é atualizado através da função que ele fornece, o React re-renderiza o componente automaticamente para refletir a mudança na tela. É usado para qualquer dado que precisa ser "lembrado" entre renderizações, como contadores, inputs, toggles.
+
+Exemplo do useState:
+const [nome, setNome] = useState("");
+
+return (
+  <input
+    value={nome}
+    onChange={(e) => setNome(e.target.value)}
+    placeholder="Digite seu nome"
+  />
+);
+
+---------------------------------------------------
+
+useEffect
+Executa um bloco de código como um "efeito colateral", ou seja, algo que acontece fora do fluxo normal de renderização. É muito usado para buscar dados de uma API, manipular o DOM, configurar timers ou sincronizar o componente com algo externo. Você controla quando ele roda através do array de dependências que é passado como segundo argumento.
+
+Exemplo useEffect: 
+const [usuario, setUsuario] = useState(null);
+
+useEffect(() => {
+  fetch("https://api.github.com/users/octocat")
+    .then(res => res.json())
+    .then(data => setUsuario(data));
+}, []);
+
+return <p>{usuario ? usuario.name : "Carregando..."}</p>;
